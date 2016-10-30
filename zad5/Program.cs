@@ -23,7 +23,9 @@ namespace zad5
                                                                            .Where(k => k.Count() > 1)
                                                                            .Select(group => group.Key)
                                                                            .ToArray();
-            //Student[] studentsOnMaleOnlyUniversities = universities.SelectMany(i=>i.Students)
+            Student[] studentsOnMaleOnlyUniversities =universities.Select(i => i)
+                                                                  .Where(i => i.Students.Count(j => j.Gender == Gender.Female) == 0)
+                                                                  .SelectMany(i=>i.Students).ToArray();
         }
     }
 }

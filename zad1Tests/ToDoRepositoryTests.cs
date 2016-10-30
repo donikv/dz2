@@ -171,6 +171,13 @@ namespace zad1
             IToDoRepository repository2 = new ToDoRepository(repository);
             Assert.AreEqual(repository, repository2.GetAll());
         }
+        [TestMethod]
+        public void GetAllFromEmptyReturnsNull()
+        {
+            
+            IToDoRepository repository2 = new ToDoRepository();
+            Assert.AreEqual(null, repository2.GetAll());
+        }
         //test metode za GetAll gotove
 
 
@@ -188,6 +195,15 @@ namespace zad1
             repository2.Add(ToDoItem2);
             Assert.AreEqual(true, repository.SequenceEqual(repository2.GetActive()));
         }
+        [TestMethod]
+        public void GetActiveFromEmptyReturnsNull()
+        {
+            var ToDoItem = new ToDoItem(" Groceries ");
+            ToDoItem.MarkAsCompleted();
+            IToDoRepository repository2 = new ToDoRepository();
+            repository2.Add(ToDoItem);
+            Assert.AreEqual(null, repository2.GetActive());
+        }
         //test metode za GetActive gotove
 
 
@@ -204,6 +220,14 @@ namespace zad1
             repository2.Add(ToDoItem);
             repository2.Add(ToDoItem2);
             Assert.AreEqual(true, repository.SequenceEqual(repository2.GetCompleted()));
+        }
+        [TestMethod]
+        public void GetCompletedFromEmptyReturnsNull()
+        {
+            var ToDoItem = new ToDoItem(" Groceries ");
+            IToDoRepository repository2 = new ToDoRepository();
+            repository2.Add(ToDoItem);
+            Assert.AreEqual(null, repository2.GetCompleted());
         }
         //test metode za GetCompleted gotove
 
@@ -225,6 +249,14 @@ namespace zad1
             var ToDoItem = new ToDoItem(" Groceries ");
             repository.Add(ToDoItem);
             Assert.AreEqual(true, repository.GetAll().SequenceEqual(repository.GetFiltered(a=>a==a)));
+        }
+        [TestMethod]
+        public void GetFilteredFromEmptyReturnsNull()
+        {
+            var ToDoItem = new ToDoItem(" Groceries ");
+            IToDoRepository repository2 = new ToDoRepository();
+            repository2.Add(ToDoItem);
+            Assert.AreEqual(null, repository2.GetFiltered(a => a !=a));
         }
     }
 

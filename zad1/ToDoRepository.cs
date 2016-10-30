@@ -93,6 +93,7 @@ namespace zad1
 
         public List<ToDoItem> GetAll()
         {
+            if (_inMemoryToDoDatabase.Count == 0) return null;
             return _inMemoryToDoDatabase;
         }
 
@@ -100,6 +101,7 @@ namespace zad1
         {
             List<ToDoItem>retList=new List<ToDoItem>();
             retList.AddRange(_inMemoryToDoDatabase.Where(a => a.IsCompleted == false));
+            if (retList.Count == 0) return null;
             return retList;
         }
 
@@ -107,6 +109,7 @@ namespace zad1
         {
             List<ToDoItem> retList = new List<ToDoItem>();
             retList.AddRange(_inMemoryToDoDatabase.Where(a => a.IsCompleted == true));
+            if (retList.Count == 0) return null;
             return retList;
         }
 
@@ -114,6 +117,7 @@ namespace zad1
         {
             List<ToDoItem> retList = new List<ToDoItem>();
             retList.AddRange(_inMemoryToDoDatabase.Where(filterFunction));
+            if (retList.Count == 0) return null;
             return retList;
         }
     }
