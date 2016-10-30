@@ -99,18 +99,12 @@ namespace zad1
 
         public List<ToDoItem> GetActive()
         {
-            List<ToDoItem>retList=new List<ToDoItem>();
-            retList.AddRange(_inMemoryToDoDatabase.Where(a => a.IsCompleted == false));
-            if (retList.Count == 0) return null;
-            return retList;
+            return GetFiltered(a => a.IsCompleted == false);
         }
 
         public List<ToDoItem> GetCompleted()
         {
-            List<ToDoItem> retList = new List<ToDoItem>();
-            retList.AddRange(_inMemoryToDoDatabase.Where(a => a.IsCompleted == true));
-            if (retList.Count == 0) return null;
-            return retList;
+            return GetFiltered(a => a.IsCompleted == true);
         }
 
         public List<ToDoItem> GetFiltered(Func<ToDoItem, bool> filterFunction)
