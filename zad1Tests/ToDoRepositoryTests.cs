@@ -169,7 +169,8 @@ namespace zad1
             var ToDoItem = new ToDoItem(" Groceries ");
             repository.Add(ToDoItem);
             IToDoRepository repository2 = new ToDoRepository(repository);
-            Assert.AreEqual(repository, repository2.GetAll());
+            repository = repository.OrderBy(i => i.DateCreated).ToList();
+            Assert.AreEqual(true, repository.SequenceEqual(repository2.GetAll()));
         }
         [TestMethod]
         public void GetAllFromEmptyReturnsNull()

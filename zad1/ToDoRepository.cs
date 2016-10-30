@@ -94,7 +94,8 @@ namespace zad1
         public List<ToDoItem> GetAll()
         {
             if (_inMemoryToDoDatabase.Count == 0) return null;
-            return _inMemoryToDoDatabase;
+            List<ToDoItem> tempList = _inMemoryToDoDatabase;
+            return _inMemoryToDoDatabase.OrderBy(i=>i.DateCreated).ToList();
         }
 
         public List<ToDoItem> GetActive()
